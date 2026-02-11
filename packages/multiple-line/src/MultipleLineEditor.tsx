@@ -16,12 +16,12 @@ export interface MultipleLineEditorProps {
   /**
    * is the field disabled initially
    */
-  isInitiallyDisabled: boolean;
+  isInitiallyDisabled?: boolean;
 
   /**
    * whether char validation should be shown or not
    */
-  withCharValidation: boolean;
+  withCharValidation?: boolean;
 
   /**
    * sdk.field
@@ -44,12 +44,16 @@ export interface MultipleLineEditorProps {
   id?: string;
 }
 
-export function MultipleLineEditor(props: MultipleLineEditorProps) {
-  const { field, locales, isInitiallyDisabled, withCharValidation, isDisabled, id } = props;
+export function MultipleLineEditor({
+  isInitiallyDisabled = true,
+  withCharValidation = true,
+  ...props
+}: MultipleLineEditorProps) {
+  const { field, locales, isDisabled, id } = props;
 
   const constraints = ConstraintsUtils.fromFieldValidations(
     field.validations,
-    field.type as 'Text'
+    field.type as 'Text',
   );
   const checkConstraint = ConstraintsUtils.makeChecker(constraints);
   const direction = locales.direction[field.locale] || 'ltr';
@@ -92,8 +96,3 @@ export function MultipleLineEditor(props: MultipleLineEditorProps) {
     </FieldConnector>
   );
 }
-
-MultipleLineEditor.defaultProps = {
-  isInitiallyDisabled: true,
-  withCharValidation: true,
-};

@@ -9,7 +9,7 @@ export interface BooleanEditorProps {
   /**
    * is the field disabled initially
    */
-  isInitiallyDisabled: boolean;
+  isInitiallyDisabled?: boolean;
 
   /**
    * sdk.field
@@ -29,7 +29,7 @@ export interface BooleanEditorProps {
   >;
 }
 
-export function BooleanEditor(props: BooleanEditorProps) {
+export function BooleanEditor({ isInitiallyDisabled = true, ...props }: BooleanEditorProps) {
   const { field } = props;
 
   const options = [
@@ -38,11 +38,7 @@ export function BooleanEditor(props: BooleanEditorProps) {
   ];
 
   return (
-    <FieldConnector<boolean>
-      debounce={0}
-      field={field}
-      isInitiallyDisabled={props.isInitiallyDisabled}
-    >
+    <FieldConnector<boolean> debounce={0} field={field} isInitiallyDisabled={isInitiallyDisabled}>
       {({ disabled, value, setValue }) => {
         const setOption = (value: string) => {
           setValue(value === 'true' ? true : false);
@@ -91,7 +87,3 @@ export function BooleanEditor(props: BooleanEditorProps) {
     </FieldConnector>
   );
 }
-
-BooleanEditor.defaultProps = {
-  isInitiallyDisabled: true,
-};

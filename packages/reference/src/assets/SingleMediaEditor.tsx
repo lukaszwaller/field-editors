@@ -12,9 +12,9 @@ type EditorProps = Pick<
   Exclude<keyof ReferenceEditorProps, 'hasCardEditActions'>
 >;
 
-export function SingleMediaEditor(props: EditorProps) {
+export function SingleMediaEditor({ isInitiallyDisabled = true, ...props }: EditorProps) {
   return (
-    <SingleReferenceEditor {...props} entityType="Asset">
+    <SingleReferenceEditor {...props} isInitiallyDisabled={isInitiallyDisabled} entityType="Asset">
       {({ entityId, isDisabled, setValue }) => (
         <FetchingWrappedAssetCard
           {...props}
@@ -29,7 +29,3 @@ export function SingleMediaEditor(props: EditorProps) {
     </SingleReferenceEditor>
   );
 }
-
-SingleMediaEditor.defaultProps = {
-  isInitiallyDisabled: true,
-};

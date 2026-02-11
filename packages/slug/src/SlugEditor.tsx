@@ -10,7 +10,7 @@ export interface SlugEditorProps {
   /**
    * is the field disabled initially
    */
-  isInitiallyDisabled: boolean;
+  isInitiallyDisabled?: boolean;
 
   baseSdk: FieldAppSDK;
 
@@ -91,7 +91,7 @@ function FieldConnectorCallback({
   );
 }
 
-export function SlugEditor(props: SlugEditorProps) {
+export function SlugEditor({ isInitiallyDisabled = true, ...props }: SlugEditorProps) {
   const { field, parameters, id } = props;
   const { locales, entry, cma } = props.baseSdk;
 
@@ -146,7 +146,7 @@ export function SlugEditor(props: SlugEditorProps) {
       {({ titleValue, isPublished, isSame }) => (
         <FieldConnector<string>
           field={field}
-          isInitiallyDisabled={props.isInitiallyDisabled}
+          isInitiallyDisabled={isInitiallyDisabled}
           debounce={0}
         >
           {({ value, errors, disabled, setValue, externalReset }) => {
@@ -176,7 +176,3 @@ export function SlugEditor(props: SlugEditorProps) {
     </TrackingFieldConnector>
   );
 }
-
-SlugEditor.defaultProps = {
-  isInitiallyDisabled: true,
-};

@@ -10,7 +10,7 @@ export interface TagsEditorContainerProps {
   /**
    * is the field disabled initially
    */
-  isInitiallyDisabled: boolean;
+  isInitiallyDisabled?: boolean;
 
   /**
    * sdk.field
@@ -48,7 +48,11 @@ function getConstraintsType(sizeConstraints?: Constraint): ConstraintsType | und
   return undefined;
 }
 
-export function TagsEditorContainer({ isInitiallyDisabled, field, id }: TagsEditorContainerProps) {
+export function TagsEditorContainer({
+  isInitiallyDisabled = true,
+  field,
+  id,
+}: TagsEditorContainerProps) {
   const validations = field.validations || [];
 
   const sizeValidations = (validations as { size?: Constraint }[])
@@ -85,7 +89,3 @@ export function TagsEditorContainer({ isInitiallyDisabled, field, id }: TagsEdit
     </FieldConnector>
   );
 }
-
-TagsEditorContainer.defaultProps = {
-  isInitiallyDisabled: true,
-};

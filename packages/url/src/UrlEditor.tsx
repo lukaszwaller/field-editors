@@ -7,7 +7,7 @@ export interface UrlEditorProps {
   /**
    * is the field disabled initially
    */
-  isInitiallyDisabled: boolean;
+  isInitiallyDisabled?: boolean;
 
   /**
    * sdk.field
@@ -22,11 +22,11 @@ export interface UrlEditorProps {
   children?: (props: { value: string | null | undefined }) => React.ReactNode;
 }
 
-export function UrlEditor(props: UrlEditorProps) {
+export function UrlEditor({ isInitiallyDisabled = true, ...props }: UrlEditorProps) {
   const { field, id } = props;
 
   return (
-    <FieldConnector<string> field={field} isInitiallyDisabled={props.isInitiallyDisabled}>
+    <FieldConnector<string> field={field} isInitiallyDisabled={isInitiallyDisabled}>
       {({ value, errors, disabled, setValue }) => {
         return (
           <div data-test-id="url-editor">
@@ -47,7 +47,3 @@ export function UrlEditor(props: UrlEditorProps) {
     </FieldConnector>
   );
 }
-
-UrlEditor.defaultProps = {
-  isInitiallyDisabled: true,
-};

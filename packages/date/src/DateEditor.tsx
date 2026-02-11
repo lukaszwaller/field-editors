@@ -20,7 +20,7 @@ export interface DateEditorProps {
   /**
    * is the field disabled initially
    */
-  isInitiallyDisabled: boolean;
+  isInitiallyDisabled?: boolean;
 
   /*
    * is the field manually disabled
@@ -159,7 +159,7 @@ function DateEditorContainer({
   );
 }
 
-export function DateEditor(props: DateEditorProps) {
+export function DateEditor({ isInitiallyDisabled = true, ...props }: DateEditorProps) {
   const { field, parameters } = props;
 
   const formatParam = parameters?.instance?.format ?? 'timeZ';
@@ -172,7 +172,7 @@ export function DateEditor(props: DateEditorProps) {
   return (
     <FieldConnector<string>
       field={field}
-      isInitiallyDisabled={props.isInitiallyDisabled}
+      isInitiallyDisabled={isInitiallyDisabled}
       isDisabled={props.isDisabled}
       debounce={0}
     >
@@ -207,7 +207,3 @@ export function DateEditor(props: DateEditorProps) {
     </FieldConnector>
   );
 }
-
-DateEditor.defaultProps = {
-  isInitiallyDisabled: true,
-};

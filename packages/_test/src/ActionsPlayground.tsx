@@ -9,7 +9,7 @@ type EventDefinition = { type?: string; value: any; id: number };
 
 type ActionsPlaygroundProps = {
   mitt: Emitter;
-  renderValue: Function;
+  renderValue?: Function;
 };
 
 type ActionPlaygroundState = {
@@ -36,7 +36,10 @@ function reducer(state: ActionPlaygroundState, action: Actions): ActionPlaygroun
   return state;
 }
 
-function ActionsPlayground(props: ActionsPlaygroundProps) {
+function ActionsPlayground({
+  mitt,
+  renderValue = (value: any) => <pre>{JSON.stringify(value, null, 2)}</pre>,
+}: ActionsPlaygroundProps) {
   const [state, dispatch] = React.useReducer(reducer, { events: [] });
 
   const onLog = (type?: string, event?: any) => {
@@ -50,22 +53,22 @@ function ActionsPlayground(props: ActionsPlaygroundProps) {
   };
 
   React.useEffect(() => {
-    props.mitt.on('*', onLog);
+    mitt.on('*', onLog);
     (window as any).editorEvents = [];
     (window as any).setValueExternal = (value: any) => {
-      props.mitt.emit('onValueChanged', value);
+      mitt.emit('onValueChanged', value);
     };
 
     return () => {
-      props.mitt.off('*', onLog);
+      mitt.off('*', onLog);
       (window as any).editorEvents = undefined;
       (window as any).setValueExternal = undefined;
     };
-  }, [props.mitt]);
+  }, [mitt]);
 
   React.useEffect(() => {
     (window as any).editorEvents = [...state.events];
-  }, [props, state.events]);
+  }, [state.events]);
 
   return (
     <div
@@ -89,18 +92,12 @@ function ActionsPlayground(props: ActionsPlaygroundProps) {
                 {log.id}. {log.type}
               </code>
             </div>
-            <div>{log.value ? props.renderValue(log.value, log.type) : <pre>undefined</pre>}</div>
+            <div>{log.value ? renderValue(log.value, log.type) : <pre>undefined</pre>}</div>
           </div>
         ))}
       </div>
     </div>
   );
 }
-
-ActionsPlayground.defaultProps = {
-  renderValue: function JsonStringifiedValue(value: any) {
-    return <pre>{JSON.stringify(value, null, 2)}</pre>;
-  },
-};
 
 export { ActionsPlayground };

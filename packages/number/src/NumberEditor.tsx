@@ -16,7 +16,7 @@ export interface NumberEditorProps {
   /**
    * is the field disabled initially
    */
-  isInitiallyDisabled: boolean;
+  isInitiallyDisabled?: boolean;
 
   /**
    * sdk.field
@@ -181,11 +181,11 @@ function InnerNumberEditor({
   );
 }
 
-export function NumberEditor(props: NumberEditorProps) {
+export function NumberEditor({ isInitiallyDisabled = true, ...props }: NumberEditorProps) {
   const { field, id } = props;
 
   return (
-    <FieldConnector<number> field={field} isInitiallyDisabled={props.isInitiallyDisabled}>
+    <FieldConnector<number> field={field} isInitiallyDisabled={isInitiallyDisabled}>
       {({
         value,
         errors,
@@ -204,7 +204,3 @@ export function NumberEditor(props: NumberEditorProps) {
     </FieldConnector>
   );
 }
-
-NumberEditor.defaultProps = {
-  isInitiallyDisabled: true,
-};

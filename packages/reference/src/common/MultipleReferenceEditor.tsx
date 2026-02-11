@@ -138,16 +138,17 @@ function Editor(props: EditorProps) {
   );
 }
 
-export function MultipleReferenceEditor(
-  props: ReferenceEditorProps & {
-    entityType: ContentEntityType;
-    children: (props: ReferenceEditorProps & ChildProps) => React.ReactElement;
-    setIndexToUpdate?: React.Dispatch<React.SetStateAction<number | undefined>>;
-  },
-) {
+export function MultipleReferenceEditor({
+  hasCardEditActions = true,
+  ...props
+}: ReferenceEditorProps & {
+  entityType: ContentEntityType;
+  children: (props: ReferenceEditorProps & ChildProps) => React.ReactElement;
+  setIndexToUpdate?: React.Dispatch<React.SetStateAction<number | undefined>>;
+}) {
   return (
     <SharedQueryClientProvider>
-      <MultipleReferenceEditorInner {...props} />
+      <MultipleReferenceEditorInner {...props} hasCardEditActions={hasCardEditActions} />
     </SharedQueryClientProvider>
   );
 }
@@ -178,7 +179,3 @@ function MultipleReferenceEditorInner(
     </ReferenceEditor>
   );
 }
-
-MultipleReferenceEditor.defaultProps = {
-  hasCardEditActions: true,
-};

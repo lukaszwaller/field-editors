@@ -25,9 +25,13 @@ const styles = {
   }),
 };
 
-export function MultipleMediaEditor(props: EditorProps) {
+export function MultipleMediaEditor({ isInitiallyDisabled = true, ...props }: EditorProps) {
   return (
-    <MultipleReferenceEditor {...props} entityType="Asset">
+    <MultipleReferenceEditor
+      {...props}
+      isInitiallyDisabled={isInitiallyDisabled}
+      entityType="Asset"
+    >
       {(childrenProps) => (
         <SortableLinkList<ReferenceValue>
           {...childrenProps}
@@ -53,7 +57,3 @@ export function MultipleMediaEditor(props: EditorProps) {
     </MultipleReferenceEditor>
   );
 }
-
-MultipleMediaEditor.defaultProps = {
-  isInitiallyDisabled: true,
-};

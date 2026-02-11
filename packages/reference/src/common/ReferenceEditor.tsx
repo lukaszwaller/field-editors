@@ -14,8 +14,8 @@ export interface ReferenceEditorProps {
   /**
    * Whether or not the field should be disabled initially.
    */
-  isInitiallyDisabled: boolean;
-  hasCardEditActions: boolean;
+  isInitiallyDisabled?: boolean;
+  hasCardEditActions?: boolean;
   hasCardMoveActions?: boolean;
   hasCardRemoveActions?: boolean;
   sdk: FieldAppSDK;
@@ -47,25 +47,23 @@ export interface ReferenceEditorProps {
 
 export type CustomActionProps = LinkActionsProps;
 
-export function ReferenceEditor<T>(
-  props: ReferenceEditorProps & {
-    children: FieldConnector<T>['props']['children'];
-  },
-) {
+export function ReferenceEditor<T>({
+  isInitiallyDisabled = true,
+  hasCardEditActions = true,
+  ...restProps
+}: ReferenceEditorProps & {
+  children: FieldConnector<T>['props']['children'];
+}) {
+  const props = { ...restProps, hasCardEditActions };
   return (
     <EntityProvider sdk={props.sdk}>
       <FieldConnector<T>
         debounce={0}
         field={props.sdk.field}
-        isInitiallyDisabled={props.isInitiallyDisabled}
+        isInitiallyDisabled={isInitiallyDisabled}
       >
         {props.children}
       </FieldConnector>
     </EntityProvider>
   );
 }
-
-ReferenceEditor.defaultProps = {
-  isInitiallyDisabled: true,
-  hasCardEditActions: true,
-};

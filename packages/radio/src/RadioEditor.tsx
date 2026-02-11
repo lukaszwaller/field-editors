@@ -17,7 +17,7 @@ export interface RadioEditorProps {
   /**
    * is the field disabled initially
    */
-  isInitiallyDisabled: boolean;
+  isInitiallyDisabled?: boolean;
 
   /**
    * sdk.field
@@ -30,7 +30,7 @@ export interface RadioEditorProps {
   locales: LocalesAPI;
 }
 
-export function RadioEditor(props: RadioEditorProps) {
+export function RadioEditor({ isInitiallyDisabled = true, ...props }: RadioEditorProps) {
   const { field, locales } = props;
 
   const options = getOptions(field);
@@ -46,7 +46,7 @@ export function RadioEditor(props: RadioEditorProps) {
     <FieldConnector<string | number>
       debounce={0}
       field={field}
-      isInitiallyDisabled={props.isInitiallyDisabled}
+      isInitiallyDisabled={isInitiallyDisabled}
     >
       {({ disabled, value, setValue }) => {
         const setOption = (value: string) => {
@@ -93,7 +93,3 @@ export function RadioEditor(props: RadioEditorProps) {
     </FieldConnector>
   );
 }
-
-RadioEditor.defaultProps = {
-  isInitiallyDisabled: true,
-};
