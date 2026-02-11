@@ -13,8 +13,6 @@
     "allowJs": true,
     "jsx": "react",
     "downlevelIteration": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "ignoreDeprecations": "5.0"
+    "resolveJsonModule": true
   }
 }
