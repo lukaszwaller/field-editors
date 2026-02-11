@@ -18,8 +18,8 @@ type FieldWrapperProps = {
   className?: string;
   showFocusBar?: boolean;
   children: React.ReactNode;
-  renderHeading?: (name: string) => JSX.Element | null;
-  renderHelpText?: (helpText: string) => JSX.Element | null;
+  renderHeading?: (name: string) => React.ReactElement | null;
+  renderHelpText?: (helpText: string) => React.ReactElement | null;
 };
 
 export const FieldWrapper: React.FC<FieldWrapperProps> = function (props: FieldWrapperProps) {
