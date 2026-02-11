@@ -71,7 +71,6 @@ const Asset = ({ command, selectedItem }: { command: Command; selectedItem: stri
       {command.thumbnail ? (
         <img width="30" height="30" src={command.thumbnail} alt="" className={styles.thumbnail} />
       ) : (
-        // @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types
         <AssetIcon width="30" height="30" className={styles.thumbnail} />
       )}
       <span>{command.label}</span>
@@ -139,7 +138,6 @@ const InternalCommandList = ({ query, editor, textContainer }: CommandListProps)
         button, and also when the "fake focus" changes.
        */}
       <div role="alert">
-        {/* @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types */}
         <ScreenReaderOnly>
           {/* TODO - show the label here and not the id */}
           Richtext commands. Currently focused item: {selectedItem}. Press <kbd>enter</kbd> to
@@ -154,7 +152,6 @@ const InternalCommandList = ({ query, editor, textContainer }: CommandListProps)
           style={popper.styles.popper}
           {...popper.attributes.popper}
         >
-          {/* @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types */}
           <Popover
             isOpen={isOpen}
             usePortal={false}

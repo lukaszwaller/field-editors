@@ -67,7 +67,6 @@ function InternalFetchingWrappedInlineEntryCard({
   );
 
   return (
-    // @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types
     <InlineEntryCard
       testId={INLINES.EMBEDDED_ENTRY}
       isSelected={isSelected}
@@ -126,13 +125,11 @@ function InternalFetchingWrappedInlineEntryCardWrapper(props: FetchingWrappedInl
   }, [requestStatus, onEntityFetchComplete]);
 
   if (requestStatus === 'loading' || requestStatus === 'idle') {
-    // @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types
     return <InlineEntryCard isLoading />;
   }
 
   if (requestStatus === 'error') {
     return (
-      // @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types
       <InlineEntryCard
         title="Content missing or inaccessible"
         testId={INLINES.EMBEDDED_ENTRY}
@@ -148,7 +145,6 @@ function InternalFetchingWrappedInlineEntryCardWrapper(props: FetchingWrappedInl
 
   if (entryStatus === 'deleted') {
     return (
-      // @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types
       <InlineEntryCard
         title="Content missing or inaccessible"
         testId={INLINES.EMBEDDED_ENTRY}

@@ -97,7 +97,6 @@ export const TableActions = () => {
   }
 
   return (
-    // @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types
     <Menu
       placement="left"
       isOpen={isOpen}
@@ -106,7 +105,6 @@ export const TableActions = () => {
       }}
       onClose={close}
     >
-      {/* @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types */}
       <Menu.Trigger>
         <IconButton
           size="small"
@@ -125,12 +123,10 @@ export const TableActions = () => {
         <Menu.Item onClick={action(addRowBelow, 'insert', 'Row')}>Add row below</Menu.Item>
         <Menu.Item onClick={action(addColumnLeft, 'insert', 'Column')}>Add column left</Menu.Item>
         <Menu.Item onClick={action(addColumnRight, 'insert', 'Column')}>Add column right</Menu.Item>
-        {/* @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types */}
         <Menu.Divider />
         <Menu.Item onClick={toggleHeader}>
           {isHeaderEnabled ? 'Disable table header' : 'Enable table header'}
         </Menu.Item>
-        {/* @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types */}
         <Menu.Divider />
         <Menu.Item onClick={action(deleteRow, 'remove', 'Row')}>Delete row</Menu.Item>
         <Menu.Item onClick={action(deleteColumn, 'remove', 'Column')}>Delete column</Menu.Item>

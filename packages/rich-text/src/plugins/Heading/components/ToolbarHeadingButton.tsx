@@ -135,9 +135,7 @@ export function ToolbarHeadingButton(props: ToolbarHeadingButtonProps) {
   if (!editor) return null;
 
   return (
-    // @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types
     <Menu isOpen={isOpen} onClose={() => setOpen(false)}>
-      {/* @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types */}
       <Menu.Trigger>
         <Button
           size="small"

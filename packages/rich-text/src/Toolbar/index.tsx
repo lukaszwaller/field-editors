@@ -83,9 +83,7 @@ const Dropdown = ({ sdk, isDisabled }: { sdk: FieldAppSDK; isDisabled?: boolean 
   const isActive = editor && dropdownMarks.some((mark) => isMarkActive(editor, mark));
 
   return (
-    // @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types
     <Menu>
-      {/* @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types */}
       <Menu.Trigger>
         <span>
           <IconButton

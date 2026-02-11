@@ -35,7 +35,6 @@ export function FetchingWrappedResourceInlineCard(props: FetchingWrappedResource
 
   if (requestStatus === 'error') {
     return (
-      // @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types
       <InlineEntryCard
         title="Content missing or inaccessible"
         testId={INLINES.EMBEDDED_RESOURCE}
@@ -45,7 +44,6 @@ export function FetchingWrappedResourceInlineCard(props: FetchingWrappedResource
   }
 
   if (requestStatus === 'loading' || data === undefined) {
-    // @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types
     return <InlineEntryCard isLoading />;
   }
 
@@ -65,7 +63,6 @@ export function FetchingWrappedResourceInlineCard(props: FetchingWrappedResource
   );
 
   return (
-    // @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types
     <InlineEntryCard
       testId={INLINES.EMBEDDED_RESOURCE}
       isSelected={props.isSelected}

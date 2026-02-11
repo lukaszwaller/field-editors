@@ -57,7 +57,6 @@ export const LinkPopover = ({
 
   return (
     // eslint-disable-next-line jsx-a11y/no-autofocus -- we don't want to autofocus the popover
-    // @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types
     <Popover renderOnlyWhenOpen={false} usePortal={true} autoFocus={false} isOpen={isOpen}>
       <Popover.Trigger>{children}</Popover.Trigger>
       <Popover.Content className={styles.popover}>
@@ -71,7 +70,6 @@ export const LinkPopover = ({
         >
           {resolvedPopoverText}
           {handleCopyLink && (
-            // @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types
             <Tooltip placement="bottom" content="Copy link" usePortal>
               <IconButton
                 className={styles.iconButton}
@@ -83,7 +81,6 @@ export const LinkPopover = ({
               />
             </Tooltip>
           )}
-          {/* @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types */}
           <Tooltip placement="bottom" content="Edit link" usePortal>
             <IconButton
               className={styles.iconButton}
@@ -94,7 +91,6 @@ export const LinkPopover = ({
               icon={<PencilSimpleIcon size="tiny" />}
             />
           </Tooltip>
-          {/* @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types */}
           <Tooltip placement="bottom" content="Remove link" usePortal>
             <IconButton
               onClick={handleRemoveLink}
