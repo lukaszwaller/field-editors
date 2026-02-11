@@ -88,9 +88,9 @@ export function SingleReferenceEditor({
   return (
     <SharedQueryClientProvider>
       <SingleReferenceEditorInner
-        {...props}
         hasCardEditActions={hasCardEditActions}
         hasCardRemoveActions={hasCardRemoveActions}
+        {...props}
       />
     </SharedQueryClientProvider>
   );
@@ -99,6 +99,8 @@ export function SingleReferenceEditor({
 function SingleReferenceEditorInner(
   props: ReferenceEditorProps & {
     entityType: ContentEntityType;
+    hasCardEditActions: boolean;
+    hasCardRemoveActions: boolean;
     children: (props: ChildProps) => React.ReactElement;
   },
 ) {

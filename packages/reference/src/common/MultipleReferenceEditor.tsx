@@ -148,7 +148,7 @@ export function MultipleReferenceEditor({
 }) {
   return (
     <SharedQueryClientProvider>
-      <MultipleReferenceEditorInner {...props} hasCardEditActions={hasCardEditActions} />
+      <MultipleReferenceEditorInner hasCardEditActions={hasCardEditActions} {...props} />
     </SharedQueryClientProvider>
   );
 }
@@ -156,6 +156,7 @@ export function MultipleReferenceEditor({
 function MultipleReferenceEditorInner(
   props: ReferenceEditorProps & {
     entityType: ContentEntityType;
+    hasCardEditActions: boolean;
     children: (props: ReferenceEditorProps & ChildProps) => React.ReactElement;
     setIndexToUpdate?: React.Dispatch<React.SetStateAction<number | undefined>>;
   },

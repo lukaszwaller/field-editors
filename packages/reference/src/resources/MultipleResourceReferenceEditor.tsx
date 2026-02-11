@@ -120,18 +120,19 @@ function WithPerItemCallbacks({
 
 const EMPTY_ARRAY: ResourceLink<string>[] = [];
 
-export function MultipleResourceReferenceEditor(
-  props: ReferenceEditorProps & {
-    apiUrl: string;
-    getEntryRouteHref: (entryRoute: EntryRoute) => string;
-  },
-) {
+export function MultipleResourceReferenceEditor({
+  isInitiallyDisabled = false,
+  ...props
+}: ReferenceEditorProps & {
+  apiUrl: string;
+  getEntryRouteHref: (entryRoute: EntryRoute) => string;
+}) {
   return (
     <EntityProvider sdk={props.sdk}>
       <FieldConnector<ResourceLink<string>[]>
         debounce={0}
         field={props.sdk.field}
-        isInitiallyDisabled={props.isInitiallyDisabled}
+        isInitiallyDisabled={isInitiallyDisabled}
       >
         {({ value, disabled, setValue, externalReset }) => {
           return (

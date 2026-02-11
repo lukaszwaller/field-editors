@@ -162,7 +162,7 @@ export function ReleaseEntityStatusPopover({
   activeLocales,
 }: ReleaseLocalePublishingPopoverProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   const onMouseEnter = useCallback(() => {
     clearTimeout(timeoutRef.current);

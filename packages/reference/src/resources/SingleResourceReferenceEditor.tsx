@@ -10,12 +10,13 @@ import { EntryRoute } from './Cards/ContentfulEntryCard';
 import { ResourceCard } from './Cards/ResourceCard';
 import { useResourceLinkActions } from './useResourceLinkActions';
 
-export function SingleResourceReferenceEditor(
-  props: ReferenceEditorProps & {
-    getEntryRouteHref: (entryRoute: EntryRoute) => string;
-    apiUrl: string;
-  },
-) {
+export function SingleResourceReferenceEditor({
+  isInitiallyDisabled = false,
+  ...props
+}: ReferenceEditorProps & {
+  getEntryRouteHref: (entryRoute: EntryRoute) => string;
+  apiUrl: string;
+}) {
   const linkActionsProps = useResourceLinkActions({
     sdk: props.sdk,
     parameters: props.parameters,
@@ -26,7 +27,7 @@ export function SingleResourceReferenceEditor(
       <FieldConnector<ResourceLink<string>>
         debounce={0}
         field={props.sdk.field}
-        isInitiallyDisabled={props.isInitiallyDisabled}
+        isInitiallyDisabled={isInitiallyDisabled}
       >
         {({ value, disabled }) => {
           return value ? (
