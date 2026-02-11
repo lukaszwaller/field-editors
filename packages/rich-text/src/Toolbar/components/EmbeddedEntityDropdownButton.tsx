@@ -19,7 +19,9 @@ export function EmbeddedEntityDropdownButton({
   onToggle,
 }: EmbeddedEntityDropdownButtonProps) {
   return (
+    // @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types
     <Menu placement="bottom-end" isOpen={isOpen} onClose={onClose} onOpen={onToggle}>
+      {/* @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types */}
       <Menu.Trigger>
         <Button
           endIcon={<CaretDownIcon />}
