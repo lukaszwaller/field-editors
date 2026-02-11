@@ -117,6 +117,7 @@ export function FetchingWrappedAssetCard(props: FetchingWrappedAssetCardProps) {
   }, [onEntityFetchComplete, status]);
 
   if (status === 'loading' || status === 'idle') {
+    // @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types
     return <AssetCard size="default" isLoading />;
   }
 

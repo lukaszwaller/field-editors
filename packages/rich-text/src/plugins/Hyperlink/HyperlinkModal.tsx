@@ -176,6 +176,7 @@ export function HyperlinkModal(props: HyperlinkModalProps) {
   return (
     <EntityProvider sdk={props.sdk}>
       <React.Fragment>
+        {/* @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types */}
         <ModalContent>
           <Form>
             {!props.linkType && (
@@ -202,6 +203,7 @@ export function HyperlinkModal(props: HyperlinkModalProps) {
                   isDisabled={props.readonly}
                 >
                   {enabledLinkTypes.map((nodeType) => (
+                    // @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types
                     <Select.Option key={nodeType} value={nodeType}>
                       {LINK_TYPE_SELECTION_VALUES[nodeType]}
                     </Select.Option>

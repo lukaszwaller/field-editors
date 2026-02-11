@@ -48,6 +48,7 @@ export function ToolbarButton(props: ToolbarButtonProps) {
 
   if (title) {
     return (
+      // @ts-expect-error - F36 components not yet compatible with React 19 strict JSX types
       <Tooltip className={styles.tooltip} placement="bottom" content={title}>
         {button}
       </Tooltip>
