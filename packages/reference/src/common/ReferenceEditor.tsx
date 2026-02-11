@@ -49,20 +49,19 @@ export type CustomActionProps = LinkActionsProps;
 
 export function ReferenceEditor<T>({
   isInitiallyDisabled = true,
-  hasCardEditActions = true,
+  hasCardEditActions: _hasCardEditActions = true,
   ...restProps
 }: ReferenceEditorProps & {
   children: FieldConnector<T>['props']['children'];
 }) {
-  const props = { ...restProps, hasCardEditActions };
   return (
-    <EntityProvider sdk={props.sdk}>
+    <EntityProvider sdk={restProps.sdk}>
       <FieldConnector<T>
         debounce={0}
-        field={props.sdk.field}
+        field={restProps.sdk.field}
         isInitiallyDisabled={isInitiallyDisabled}
       >
-        {props.children}
+        {restProps.children}
       </FieldConnector>
     </EntityProvider>
   );
