@@ -62,7 +62,7 @@ function CheatSheetMessage({ onClick }: { onClick: () => void }) {
 type HelpMode = MarkdownTab | 'zen';
 
 export function MarkdownHelp(props: { onClick: () => void; mode: HelpMode }) {
-  let content: JSX.Element | null;
+  let content: React.ReactElement | null;
 
   switch (props.mode) {
     case 'preview':

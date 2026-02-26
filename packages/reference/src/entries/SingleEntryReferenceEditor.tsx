@@ -6,11 +6,14 @@ import { ReferenceEditorProps } from '../common/ReferenceEditor';
 import { SingleReferenceEditor } from '../common/SingleReferenceEditor';
 import { FetchingWrappedEntryCard } from './WrappedEntryCard/FetchingWrappedEntryCard';
 
-export function SingleEntryReferenceEditor(props: ReferenceEditorProps) {
+export function SingleEntryReferenceEditor({
+  isInitiallyDisabled = true,
+  ...props
+}: ReferenceEditorProps) {
   const activeLocales = useActiveLocales(props.sdk);
 
   return (
-    <SingleReferenceEditor {...props} entityType="Entry">
+    <SingleReferenceEditor {...props} isInitiallyDisabled={isInitiallyDisabled} entityType="Entry">
       {({
         allContentTypes,
         isDisabled,
@@ -40,7 +43,3 @@ export function SingleEntryReferenceEditor(props: ReferenceEditorProps) {
     </SingleReferenceEditor>
   );
 }
-
-SingleEntryReferenceEditor.defaultProps = {
-  isInitiallyDisabled: true,
-};

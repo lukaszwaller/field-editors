@@ -35,8 +35,8 @@ type FieldProps = {
   renderFieldEditor?: (
     widgetId: WidgetType,
     sdk: FieldAppSDK,
-    isInitiallyDisabled: boolean
-  ) => JSX.Element | false;
+    isInitiallyDisabled: boolean,
+  ) => React.ReactElement | false;
   getOptions?: (widgetId: WidgetType, sdk: FieldAppSDK) => EditorOptions;
 };
 

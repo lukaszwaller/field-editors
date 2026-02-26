@@ -36,7 +36,7 @@
     "tsc": "tsc -p ./ --noEmit"
   },
   "dependencies": {
-    "@contentful/f36-components": "^5.4.1",
+    "@contentful/f36-components": "^6.3.2",
     "@contentful/field-editor-shared": "^2.18.0"
   },
   "devDependencies": {

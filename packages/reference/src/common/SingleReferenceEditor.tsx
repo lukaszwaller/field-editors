@@ -77,15 +77,21 @@ function Editor(props: EditorProps) {
   });
 }
 
-export function SingleReferenceEditor(
-  props: ReferenceEditorProps & {
-    entityType: ContentEntityType;
-    children: (props: ChildProps) => React.ReactElement;
-  },
-) {
+export function SingleReferenceEditor({
+  hasCardEditActions = true,
+  hasCardRemoveActions = true,
+  ...props
+}: ReferenceEditorProps & {
+  entityType: ContentEntityType;
+  children: (props: ChildProps) => React.ReactElement;
+}) {
   return (
     <SharedQueryClientProvider>
-      <SingleReferenceEditorInner {...props} />
+      <SingleReferenceEditorInner
+        hasCardEditActions={hasCardEditActions}
+        hasCardRemoveActions={hasCardRemoveActions}
+        {...props}
+      />
     </SharedQueryClientProvider>
   );
 }
@@ -93,6 +99,8 @@ export function SingleReferenceEditor(
 function SingleReferenceEditorInner(
   props: ReferenceEditorProps & {
     entityType: ContentEntityType;
+    hasCardEditActions: boolean;
+    hasCardRemoveActions: boolean;
     children: (props: ChildProps) => React.ReactElement;
   },
 ) {
@@ -115,8 +123,3 @@ function SingleReferenceEditorInner(
     </ReferenceEditor>
   );
 }
-
-SingleReferenceEditor.defaultProps = {
-  hasCardEditActions: true,
-  hasCardRemoveActions: true,
-};

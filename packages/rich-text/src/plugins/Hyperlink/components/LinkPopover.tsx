@@ -58,7 +58,9 @@ export const LinkPopover = ({
   return (
     // eslint-disable-next-line jsx-a11y/no-autofocus -- we don't want to autofocus the popover
     <Popover renderOnlyWhenOpen={false} usePortal={true} autoFocus={false} isOpen={isOpen}>
-      <Popover.Trigger>{children}</Popover.Trigger>
+      <Popover.Trigger>
+        <span>{children}</span>
+      </Popover.Trigger>
       <Popover.Content className={styles.popover}>
         <Flex
           ref={popoverContent}

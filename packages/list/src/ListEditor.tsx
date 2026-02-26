@@ -11,7 +11,7 @@ export interface ListEditorProps {
   /**
    * is the field disabled initially
    */
-  isInitiallyDisabled: boolean;
+  isInitiallyDisabled?: boolean;
 
   /**
    * sdk.field
@@ -49,7 +49,7 @@ const useExternalChanges = (cb: (newValue: string) => void, externalValue?: List
   }, [cb, externalValue]);
 };
 
-export function ListEditor(props: ListEditorProps) {
+export function ListEditor({ isInitiallyDisabled = true, ...props }: ListEditorProps) {
   const { field, locales, id } = props;
 
   const direction = locales.direction[field.locale] || 'ltr';
@@ -59,7 +59,7 @@ export function ListEditor(props: ListEditorProps) {
       debounce={0}
       isEmptyValue={isEmptyListValue}
       field={field}
-      isInitiallyDisabled={props.isInitiallyDisabled}
+      isInitiallyDisabled={isInitiallyDisabled}
     >
       {(childProps) => (
         <ListEditorInternal
@@ -116,7 +116,3 @@ function ListEditorInternal({
     />
   );
 }
-
-ListEditor.defaultProps = {
-  isInitiallyDisabled: true,
-};

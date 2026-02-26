@@ -16,7 +16,7 @@ export interface DropdownEditorProps {
   /**
    * is the field disabled initially
    */
-  isInitiallyDisabled: boolean;
+  isInitiallyDisabled?: boolean;
   /**
    * sdk.field
    */
@@ -33,7 +33,7 @@ export interface DropdownEditorProps {
   id?: string;
 }
 
-export function DropdownEditor(props: DropdownEditorProps) {
+export function DropdownEditor({ isInitiallyDisabled = true, ...props }: DropdownEditorProps) {
   const { field, locales, id } = props;
 
   const options = getOptions(field);
@@ -49,7 +49,7 @@ export function DropdownEditor(props: DropdownEditorProps) {
     <FieldConnector<string | number>
       debounce={0}
       field={field}
-      isInitiallyDisabled={props.isInitiallyDisabled}
+      isInitiallyDisabled={isInitiallyDisabled}
     >
       {({ value, errors, disabled, setValue }) => (
         <Select
@@ -81,7 +81,3 @@ export function DropdownEditor(props: DropdownEditorProps) {
     </FieldConnector>
   );
 }
-
-DropdownEditor.defaultProps = {
-  isInitiallyDisabled: true,
-};

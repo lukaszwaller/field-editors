@@ -16,7 +16,6 @@ import { RichTextTrackingActionName } from '../../../plugins/Tracking';
 import { addColumnLeft, addColumnRight, addRowAbove, addRowBelow, setHeader } from '../actions';
 import { isTableHeaderEnabled } from '../helpers';
 
-
 export const styles = {
   topRight: css({
     position: 'absolute',

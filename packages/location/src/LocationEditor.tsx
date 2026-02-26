@@ -18,7 +18,7 @@ export interface LocationEditorConnectedProps {
   /**
    * is the field disabled initially
    */
-  isInitiallyDisabled: boolean;
+  isInitiallyDisabled?: boolean;
 
   /**
    * sdk.field
@@ -114,7 +114,7 @@ export class LocationEditor extends React.Component<
         },
         () => {
           resolve('');
-        }
+        },
       );
     });
   };
@@ -155,13 +155,16 @@ export class LocationEditor extends React.Component<
   }
 }
 
-export function LocationEditorConnected(props: LocationEditorConnectedProps) {
+export function LocationEditorConnected({
+  isInitiallyDisabled = true,
+  ...props
+}: LocationEditorConnectedProps) {
   const { field } = props;
   const googleMapsKey = props.parameters ? props.parameters.instance.googleMapsKey : undefined;
   const [selectedView, setSelectedView] = React.useState<ViewType>(ViewType.Address);
 
   return (
-    <FieldConnector<LocationValue> field={field} isInitiallyDisabled={props.isInitiallyDisabled}>
+    <FieldConnector<LocationValue> field={field} isInitiallyDisabled={isInitiallyDisabled}>
       {({ value, disabled, setValue, externalReset }) => {
         return (
           <LocationEditor
@@ -179,7 +182,3 @@ export function LocationEditorConnected(props: LocationEditorConnectedProps) {
     </FieldConnector>
   );
 }
-
-LocationEditorConnected.defaultProps = {
-  isInitiallyDisabled: true,
-};

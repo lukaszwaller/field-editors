@@ -9,7 +9,10 @@ import { SortableLinkList } from '../common/SortableLinkList';
 import { ReferenceValue } from '../types';
 import { FetchingWrappedEntryCard } from './WrappedEntryCard/FetchingWrappedEntryCard';
 
-export function MultipleEntryReferenceEditor(props: ReferenceEditorProps) {
+export function MultipleEntryReferenceEditor({
+  hasCardEditActions = true,
+  ...props
+}: ReferenceEditorProps) {
   const [indexToUpdate, setIndexToUpdate] = React.useState<number | undefined>(undefined);
   const activeLocales = useActiveLocales(props.sdk);
 
@@ -18,7 +21,12 @@ export function MultipleEntryReferenceEditor(props: ReferenceEditorProps) {
   };
 
   return (
-    <MultipleReferenceEditor {...props} entityType="Entry" setIndexToUpdate={setIndexToUpdate}>
+    <MultipleReferenceEditor
+      {...props}
+      hasCardEditActions={hasCardEditActions}
+      entityType="Entry"
+      setIndexToUpdate={setIndexToUpdate}
+    >
       {(childrenProps) => (
         <SortableLinkList<ReferenceValue>
           {...childrenProps}
@@ -29,6 +37,7 @@ export function MultipleEntryReferenceEditor(props: ReferenceEditorProps) {
             const lastIndex = items.length - 1;
             return (
               <FetchingWrappedEntryCard
+                hasCardEditActions={hasCardEditActions}
                 {...childrenProps}
                 key={`${item.sys.id}-${index}`}
                 index={index}

@@ -20,7 +20,7 @@ export interface CheckboxEditorProps {
   /**
    * is the field disabled initially
    */
-  isInitiallyDisabled: boolean;
+  isInitiallyDisabled?: boolean;
   /**
    * sdk.field
    */
@@ -80,7 +80,7 @@ const getInvalidValues = (
   return invalidValues;
 };
 
-export function CheckboxEditor(props: CheckboxEditorProps) {
+export function CheckboxEditor({ isInitiallyDisabled = true, ...props }: CheckboxEditorProps) {
   const [id] = useState(() => nanoid(6));
   const { field, locales } = props;
 
@@ -98,7 +98,7 @@ export function CheckboxEditor(props: CheckboxEditorProps) {
       debounce={0}
       isEmptyValue={isEmptyListValue}
       field={field}
-      isInitiallyDisabled={props.isInitiallyDisabled}
+      isInitiallyDisabled={isInitiallyDisabled}
     >
       {({ disabled, value, setValue }) => {
         const values = value || [];
@@ -168,7 +168,3 @@ export function CheckboxEditor(props: CheckboxEditorProps) {
     </FieldConnector>
   );
 }
-
-CheckboxEditor.defaultProps = {
-  isInitiallyDisabled: true,
-};
